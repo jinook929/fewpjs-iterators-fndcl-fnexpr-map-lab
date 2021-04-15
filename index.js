@@ -12,5 +12,26 @@ const tutorials = [
 ];
 
 const titleCased = () => {
-  return tutorials
+  // tutorials.forEach((name, i) => {
+  //   const words = name.split(" ")
+  //   const titleCasedWords = words.map(word => word[0].toUpperCase() + word.slice(1))
+  //   tutorials[i] = titleCasedWords.join(" ")
+  // })
+  return tutorials.map((name, i) => {
+    const words = name.split(" ")
+    const titleCasedWords = words.map(word => word[0].toUpperCase() + word.slice(1))
+    return titleCasedWords.join(" ")
+  })
 }
+
+console.log(titleCased())
+
+const display = document.querySelector("#display")
+
+function displayTutorialTitle(tutorial, i, parentNode) {
+  const h2 = document.createElement("h2")
+  h2.innerHTML = `#${i+1} - ${tutorial}`
+  parentNode.append(h2)
+}
+
+titleCased().forEach((tutorial, i) => displayTutorialTitle(tutorial, i, display))
